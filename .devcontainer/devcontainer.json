@@ -1,0 +1,19 @@
+{
+  "name": "R Shiny Development Environment",
+  "image": "rocker/rstudio:latest", // This image comes with R and RStudio Server pre-installed
+  "forwardPorts": [
+    8787, // Default port for RStudio Server
+    3838  // Common port for Shiny apps
+  ],
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev && R -e \"install.packages(c('shiny', 'ggplot2', 'dplyr', 'readr', 'RColorBrewer', 'rsconnect'), repos='https://cran.rstudio.com/')\"",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "REditorSupport.r",         // R Language Support
+        "RDebugger.r-debugger",     // R Debugger
+        "ms-toolsai.jupyter"      // For R notebooks if you use them
+      ]
+    }
+  },
+  "remoteUser": "rstudio" // Important when using rocker/rstudio images
+}
